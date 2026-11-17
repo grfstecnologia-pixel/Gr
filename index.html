@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>GRFS Tecnologia | Hardware e Componentes</title>
+<style>
+:root {
+ --bg:#071426;--panel:#0d2038;--panel2:#102944;
+ --blue:#087cff;--cyan:#00d5ff;--white:#f3f7ff;
+ --muted:#9bb0c9;--green:#16c784;--red:#ff5364;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--white)}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+a{color:inherit;text-decoration:none}
+.topbar{background:#04101f;text-align:center;padding:9px;font-size:12px;color:#a9c5e5}
+header{background:#0b1b30;border-bottom:1px solid #1b3857;position:sticky;top:0;z-index:20}
+.nav{max-width:1250px;margin:auto;padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--cyan)}
+.logo small{display:block;font-size:10px;color:var(--muted);letter-spacing:3px;margin-top:3px}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn{padding:11px 17px;border-radius:9px;background:var(--blue);color:white;font-weight:bold;transition:.2s}
+.btn:hover{filter:brightness(1.2);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid #315170;color:white}
+.btn-dark{background:#18334f;color:white}
+.search{width:100%;max-width:340px;background:#132944;border:1px solid #274663;border-radius:9px;padding:12px;color:white;outline:none}
+.hero{max-width:1250px;margin:35px auto;padding:55px 35px;border-radius:22px;background:radial-gradient(circle at 80% 20%,#07599c,transparent 35%),linear-gradient(115deg,#102c4d,#071426 75%);border:1px solid #21496b;min-height:310px;display:flex;align-items:center;justify-content:space-between;gap:25px;overflow:hidden}
+.hero-content{max-width:650px}
+.tag{color:var(--cyan);font-size:12px;font-weight:bold;letter-spacing:2px}
+.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.1;margin:18px 0}
+.hero h1 span{color:var(--cyan)}
+.hero p{color:#b9cce0;line-height:1.7;margin-bottom:25px}
+.hero-art{font-size:130px;filter:drop-shadow(0 0 25px #087cff88)}
+.section{max-width:1250px;margin:48px auto;padding:0 20px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px;flex-wrap:wrap}
+.section-title h2{font-size:25px}
+.section-title p{color:var(--muted);font-size:13px;margin-top:7px}
+.categories{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
+.cat{white-space:nowrap;background:#102944;border:1px solid #284664;color:#c5d9ef;padding:12px 17px;border-radius:30px}
+.cat.active,.cat:hover{background:var(--blue);color:white;border-color:var(--blue)}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.product{background:var(--panel);border:1px solid #1c3a59;border-radius:15px;overflow:hidden;transition:.25s}
+.product:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 12px 30px #0005}
+.product-img{height:165px;background:linear-gradient(145deg,#152f4b,#0a192b);display:flex;align-items:center;justify-content:center;font-size:70px;position:relative}
+.product-img img{width:100%;height:100%;object-fit:contain;padding:15px}
+.product-tag{position:absolute;top:12px;left:12px;background:#087cff;padding:5px 9px;border-radius:5px;font-size:10px}
+.product-info{padding:16px}
+.product-info small{color:var(--cyan);font-size:11px}
+.product-info h3{font-size:14px;line-height:1.5;margin:9px 0;min-height:42px}
+.product-info p{color:var(--muted);font-size:11px}
+.price{font-size:21px;font-weight:900;margin:13px 0 5px}
+.installments{font-size:11px;color:var(--muted)}
+.product-info .btn{width:100%;margin-top:13px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.trust-item{background:var(--panel);border:1px solid #1c3a59;padding:22px;border-radius:13px;text-align:center}
+.trust-item b{display:block;margin:10px 0;font-size:13px}
+.trust-item p{color:var(--muted);font-size:11px;line-height:1.6}
+.trust-icon{font-size:28px}
+.banner{background:linear-gradient(100deg,#0758a4,#087cff);padding:35px;border-radius:17px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.banner h2{margin-bottom:10px}
+.banner p{color:#d8eaff;font-size:13px}
+footer{margin-top:70px;background:#040e1b;border-top:1px solid #1b3857;padding:45px 20px 20px}
+.footer-content{max-width:1250px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+footer p,footer li{color:var(--muted);font-size:12px;line-height:2}
+footer h3{margin-bottom:14px;font-size:14px}
+footer ul{list-style:none}
+.copyright{text-align:center;border-top:1px solid #1b3049;margin-top:35px;padding-top:20px;color:#6e88a5;font-size:11px}
+.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:50;align-items:center;justify-content:center;padding:15px}
+.overlay.show{display:flex}
+.modal{background:#0d2038;border:1px solid #294a69;border-radius:17px;width:100%;max-width:570px;max-height:90vh;overflow:auto;padding:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close{background:#1a3450;color:white;padding:8px 12px;border-radius:7px}
+.field{margin:13px 0}
+.field label{display:block;font-size:12px;color:#adc2dc;margin-bottom:7px}
+.field input,.field select{width:100%;padding:12px;background:#071729;border:1px solid #294968;border-radius:8px;color:white;outline:none}
+.cart-row{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid #29415a;font-size:13px}
+.cart-total{font-size:20px;font-weight:bold;text-align:right;margin:20px 0}
+.qty{display:flex;gap:8px;align-items:center;margin-top:8px}
+.qty button{background:#244463;color:white;padding:4px 10px;border-radius:5px}
+.notice{background:#172f49;padding:13px;border-radius:9px;color:#b9cce0;font-size:12px;line-height:1.6;margin:15px 0}
+.dashboard{display:none;position:fixed;inset:0;background:#071426;z-index:60;overflow:auto;padding:20px}
+.dashboard.show{display:block}
+.dash-wrap{max-width:1150px;margin:auto}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:10px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:25px}
+.stat{background:var(--panel);padding:20px;border:1px solid #23415e;border-radius:12px}
+.stat small{color:var(--muted)}
+.stat h2{margin-top:12px;color:var(--cyan)}
+.dash-card{background:var(--panel);padding:20px;border:1px solid #23415e;border-radius:12px;margin:15px 0}
+.dash-card h3{margin-bottom:15px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:600px}
+td,th{text-align:left;padding:13px;border-bottom:1px solid #29415a}
+th{color:var(--cyan)}
+.status{padding:5px 8px;border-radius:5px;background:#244a3c;color:#63e8ac;font-size:10px}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#16a56f;color:white;padding:13px 22px;border-radius:9px;z-index:100;display:none;font-size:13px}
+@media(max-width:900px){.products{grid-template-columns:repeat(3,1fr)}.trust{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.products{grid-template-columns:repeat(2,1fr);gap:10px}.product-img{height:125px;font-size:48px}.product-info{padding:11px}.product-info h3{font-size:12px}.price{font-size:17px}.hero{padding:30px 22px;margin:18px 12px}.hero-art{font-size:65px}.section{padding:0 12px}.footer-content{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.nav{padding:13px}.search{max-width:none;order:3}.nav-actions{width:100%;justify-content:space-between}.banner{padding:23px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<div class="topbar">⚡ GRFS TECNOLOGIA — PERFORMANCE, QUALIDADE E TECNOLOGIA</div>
+
+<header>
+ <div class="nav">
+  <a href="#" class="logo">GRFS<span>TECH</span><small>TECNOLOGIA & HARDWARE</small></a>
+  <input class="search" id="search" placeholder="🔎 Pesquisar componentes..." oninput="renderProducts()">
+  <div class="nav-actions">
+   <button class="btn btn-outline" onclick="openSeller()">Área do vendedor</button>
+   <button class="btn" onclick="openCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
+  </div>
+ </div>
+</header>
+
+<section class="hero">
+ <div class="hero-content">
+  <div class="tag">● SUA LOJA DE HARDWARE</div>
+  <h1>Potencialize seu setup com a <span>GRFS Tecnologia.</span></h1>
+  <p>Os componentes que seu computador precisa para alcançar o máximo desempenho. Encontre hardware, upgrades e tecnologia em um só lugar.</p>
+  <button class="btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">EXPLORAR PRODUTOS →</button>
+ </div>
+ <div class="hero-art">💻</div>
+</section>
+
+<section class="section" id="catalogo">
+ <div class="section-title">
+  <div><h2>Nosso catálogo</h2><p>Explore nossos componentes e encontre o ideal para seu computador.</p></div>
+  <select id="sort" class="search" style="max-width:190px" onchange="renderProducts()">
+   <option value="default">Ordenar por</option>
+   <option value="low">Menor preço</option>
+   <option value="high">Maior preço</option>
+   <option value="name">Nome</option>
+  </select>
+ </div>
+ <div class="categories" id="categories"></div>
+ <div class="products" id="products"></div>
+</section>
+
+<section class="section">
+ <div class="section-title"><div><h2>Por que comprar na GRFS?</h2><p>Compromisso com qualidade e atendimento.</p></div></div>
+ <div class="trust">
+  <div class="trust-item"><div class="trust-icon">🔒</div><b>Ambiente protegido</b><p>Compromisso com a proteção das informações dos clientes.</p></div>
+  <div class="trust-item"><div class="trust-icon">📦</div><b>Produtos selecionados</b><p>Componentes para diferentes necessidades e configurações.</p></div>
+  <div class="trust-item"><div class="trust-icon">🎧</div><b>Atendimento</b><p>Suporte para ajudar você a escolher os componentes certos.</p></div>
+  <div class="trust-item"><div class="trust-icon">🛡️</div><b>Garantia</b><p>Consulte as condições de garantia de cada produto.</p></div>
+ </div>
+ <div class="notice">Os símbolos acima são elementos informativos da loja, não representam certificações oficiais ou selos emitidos por terceiros.</div>
+</section>
+
+<section class="section">
+ <div class="banner">
+  <div><h2>Monte seu computador ideal!</h2><p>Encontre os componentes certos para seu próximo upgrade.</p></div>
+  <button class="btn btn-dark" onclick="contact()">FALAR COM A GRFS →</button>
+ </div>
+</section>
+
+<footer>
+ <div class="footer-content">
+  <div><div class="logo">GRFS<span>TECH</span></div><p style="margin-top:15px">Tecnologia, hardware e componentes para computadores. Seu próximo upgrade começa aqui.</p></div>
+  <div><h3>INSTITUCIONAL</h3><ul><li>Sobre a GRFS Tecnologia</li><li>Atendimento ao cliente</li><li>Política de privacidade</li><li>Garantia e devoluções</li></ul></div>
+  <div><h3>CONTATO E EMPRESA</h3><p>E-mail: grfstecnologia@gmail.com</p><p>CNPJ: 49.317.848/0001-38</p><p>Brasil</p></div>
+ </div>
+ <div class="copyright">© <span id="year"></span> GRFS Tecnologia. Todos os direitos reservados.</div>
+</footer>
+
+<!-- CARRINHO -->
+<div class="overlay" id="cartModal">
+ <div class="modal">
+  <div class="modal-head"><h2>🛒 Meu carrinho</h2><button class="close" onclick="closeModal('cartModal')">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
+  <button class="btn" style="width:100%" onclick="checkout()">FINALIZAR PEDIDO</button>
+ </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="checkoutModal">
+ <div class="modal">
+  <div class="modal-head"><h2>Finalizar pedido</h2><button class="close" onclick="closeModal('checkoutModal')">✕</button></div>
+  <form onsubmit="submitOrder(event)">
+   <div class="field"><label>Nome completo</label><input id="customerName" required></div>
+   <div class="field"><label>E-mail</label><input id="customerEmail" type="email" required></div>
+   <div class="field"><label>Telefone / WhatsApp</label><input id="customerPhone" required></div>
+   <div class="field"><label>CPF</label><input id="customerCPF" placeholder="Opcional"></div>
+   <div class="notice">O pedido será registrado neste navegador. Para receber pagamentos reais, é necessário conectar um sistema de checkout seguro.</div>
+   <button class="btn" style="width:100%" type="submit">CONFIRMAR PEDIDO</button>
+  </form>
+ </div>
+</div>
+
+<!-- LOGIN VENDEDOR -->
+<div class="overlay" id="sellerModal">
+ <div class="modal">
+  <div class="modal-head"><h2>🔐 Área dos vendedores</h2><button class="close" onclick="closeModal('sellerModal')">✕</button></div>
+  <p style="color:var(--muted);font-size:13px">Acesse o painel comercial da GRFS Tecnologia.</p>
+  <form onsubmit="loginSeller(event)">
+   <div class="field"><label>Usuário</label><input id="sellerUser" required placeholder="Usuário"></div>
+   <div class="field"><label>Senha</label><input id="sellerPass" type="password" required placeholder="Senha"></div>
+   <button class="btn" style="width:100%;margin-top:10px">ENTRAR NO PAINEL</button>
+  </form>
+  <div class="notice">Demonstração inicial: usuário <b>admin</b> e senha <b>grfs2026</b>. Troque esse acesso por autenticação segura no servidor antes de usar comercialmente.</div>
+ </div>
+</div>
+
+<!-- PAINEL -->
+<div class="dashboard" id="dashboard">
+ <div class="dash-wrap">
+  <div class="dash-header">
+   <div><div class="logo">GRFS<span>TECH</span></div><p style="color:var(--muted);font-size:12px;margin-top:5px">Painel comercial</p></div>
+   <button class="btn btn-outline" onclick="logout()">SAIR ✕</button>
+  </div>
+  <div class="stats">
+   <div class="stat"><small>Total de vendas registradas</small><h2 id="totalSales">0</h2></div>
+   <div class="stat"><small>Valor total das vendas</small><h2 id="totalValue">R$ 0,00</h2></div>
+   <div class="stat"><small>Pedidos pendentes</small><h2 id="pendingSales">0</h2></div>
+  </div>
+  <div class="dash-card">
+   <h3>➕ Gerar nova cobrança / pedido</h3>
+   <form onsubmit="createSale(event)">
+    <div class="field"><label>Nome do cliente</label><input id="saleCustomer" required></div>
+    <div class="field"><label>Descrição do produto ou pedido</label><input id="saleProduct" required></div>
+    <div class="field"><label>Valor (R$)</label><input id="saleValue" type="number" min="0.01" step="0.01" required></div>
+    <div class="field"><label>Vendedor responsável</label><input id="saleSeller" required placeholder="Nome do vendedor"></div>
+    <div class="field"><label>Forma de pagamento</label>
+     <select id="salePayment"><option>PIX</option><option>Cartão de crédito</option><option>Cartão de débito</option><option>Transferência</option><option>Boleto</option></select>
+    </div>
+    <button class="btn" type="submit">REGISTRAR COBRANÇA</button>
+   </form>
+   <div class="notice">Esta função registra uma cobrança interna demonstrativa. Não gera um PIX válido nem efetua transações bancárias.</div>
+  </div>
+  <div class="dash-card">
+   <h3>📊 Histórico de vendas</h3>
+   <div class="table-wrap">
+    <table>
+     <thead><tr><th>Data</th><th>Cliente</th><th>Descrição</th><th>Vendedor</th><th>Valor</th><th>Pagamento</th><th>Status</th><th>Ação</th></tr></thead>
+     <tbody id="salesTable"></tbody>
+    </table>
+   </div>
+   <div id="emptySales" class="empty">Nenhuma venda registrada ainda.</div>
+  </div>
+  <div class="dash-card">
+   <h3>📥 Exportar relatório</h3>
+   <button class="btn btn-outline" onclick="exportSales()">BAIXAR RELATÓRIO CSV</button>
+  </div>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+ {id:1,name:"Processador AMD Ryzen 5 5600",cat:"Processadores",price:799,icon:"🧠",tag:"POPULAR"},
+ {id:2,name:"Processador AMD Ryzen 7 5700X",cat:"Processadores",price:1199,icon:"🧠"},
+ {id:3,name:"Intel Core i5 12400F",cat:"Processadores",price:899,icon:"🧠",tag:"DESTAQUE"},
+ {id:4,name:"Intel Core i7 12700KF",cat:"Processadores",price:1699,icon:"🧠"},
+ {id:5,name:"Placa de Vídeo RTX 4060 8GB",cat:"Placas de vídeo",price:2199,icon:"🎮",tag:"GAMER"},
+ {id:6,name:"Placa de Vídeo RTX 4070 12GB",cat:"Placas de vídeo",price:3999,icon:"🎮"},
+ {id:7,name:"Placa de Vídeo RX 7600 8GB",cat:"Placas de vídeo",price:1899,icon:"🎮"},
+ {id:8,name:"Placa Mãe B550M AM4",cat:"Placas-mãe",price:599,icon:"🖥️"},
+ {id:9,name:"Placa Mãe B760M Intel",cat:"Placas-mãe",price:799,icon:"🖥️"},
+ {id:10,name:"Placa Mãe X570 Gaming",cat:"Placas-mãe",price:1199,icon:"🖥️"},
+ {id:11,name:"Memória RAM DDR4 16GB",cat:"Memórias RAM",price:249,icon:"💾"},
+ {id:12,name:"Memória RAM DDR4 32GB",cat:"Memórias RAM",price:429,icon:"💾"},
+ {id:13,name:"Memória RAM DDR5 32GB",cat:"Memórias RAM",price:699,icon:"💾",tag:"NOVO"},
+ {id:14,name:"SSD NVMe 500GB",cat:"Armazenamento",price:249,icon:"💿"},
+ {id:15,name:"SSD NVMe 1TB",cat:"Armazenamento",price:399,icon:"💿"},
+ {id:16,name:"SSD NVMe 2TB",cat:"Armazenamento",price:699,icon:"💿"},
+ {id:17,name:"HD 1TB SATA",cat:"Armazenamento",price:299,icon:"💿"},
+ {id:18,name:"Fonte 650W 80 Plus Bronze",cat:"Fontes",price:399,icon:"🔌"},
+ {id:19,name:"Fonte 750W 80 Plus Gold",cat:"Fontes",price:649,icon:"🔌"},
+ {id:20,name:"Fonte 850W Modular",cat:"Fontes",price:899,icon:"🔌"},
+ {id:21,name:"Water Cooler 240mm RGB",cat:"Refrigeração",price:399,icon:"❄️"},
+ {id:22,name:"Air Cooler Tower RGB",cat:"Refrigeração",price:189,icon:"❄️"},
+ {id:23,name:"Kit 3 Fans RGB",cat:"Refrigeração",price:129,icon:"🌀"},
+ {id:24,name:"Gabinete Gamer Mid Tower",cat:"Gabinetes",price:349,icon:"🖥️"},
+ {id:25,name:"Gabinete Gamer Aquário",cat:"Gabinetes",price:499,icon:"🖥️"},
+ {id:26,name:"Placa de Rede PCIe",cat:"Acessórios",price:99,icon:"📡"},
+ {id:27,name:"Adaptador Wi-Fi USB",cat:"Acessórios",price:79,icon:"📡"},
+ {id:28,name:"Pasta térmica para CPU",cat:"Acessórios",price:39,icon:"🧴"}
+];
+
+let category="Todos";
+let cart=JSON.parse(localStorage.getItem("grfs_cart")||"[]");
+let sales=JSON.parse(localStorage.getItem("grfs_sales")||"[]");
+
+const money=v=>Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const saveCart=()=>localStorage.setItem("grfs_cart",JSON.stringify(cart));
+const saveSales=()=>localStorage.setItem("grfs_sales",JSON.stringify(sales));
+
+function renderCategories(){
+ const cats=["Todos",...new Set(products.map(p=>p.cat))];
+ document.getElementById("categories").innerHTML=cats.map(c=>
+ `<button class="cat ${category===c?"active":""}" onclick="setCategory('${c}')">${c}</button>`
+ ).join("");
+}
+function setCategory(c){category=c;renderCategories();renderProducts()}
+function renderProducts(){
+ const term=document.getElementById("search").value.toLowerCase();
+ let list=products.filter(p=>(category==="Todos"||p.cat===category)&&p.name.toLowerCase().includes(term));
+ const sort=document.getElementById("sort").value;
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`
+ <article class="product">
+  <div class="product-img">${p.tag?`<span class="product-tag">${p.tag}</span>`:""}${p.icon}</div>
+  <div class="product-info">
+   <small>${p.cat.toUpperCase()}</small>
+   <h3>${p.name}</h3>
+   <p>Consulte disponibilidade e garantia</p>
+   <div class="price">${money(p.price)}</div>
+   <div class="installments">Consulte condições de pagamento</div>
+   <button class="btn" onclick="addCart(${p.id})">ADICIONAR AO CARRINHO</button>
+  </div>
+ </article>`).join(""):`<div class="empty">Nenhum produto encontrado.</div>`;
+}
+function addCart(id){
+ const item=cart.find(x=>x.id===id);
+ if(item)item.qty++;
+ else cart.push({id,qty:1});
+ saveCart();updateCart();toast("Produto adicionado ao carrinho!");
+}
+function updateCart(){
+ document.getElementById("cartCount").textContent
